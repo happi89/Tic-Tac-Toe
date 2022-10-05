@@ -29,13 +29,13 @@
 
 			kaboom({
 				background: [0, 0, 0],
-				width: 1000,
+				width: 2000,
 				height: 1000,
 			});
 
 			scene('startGame', () => {
-				const SCREEN_WIDTH = 1000;
-				const SCREEN_HEIGHT = 600;
+				const SCREEN_WIDTH = 2000;
+				const SCREEN_HEIGHT = 1000;
 
 				add([
 					text("What's your name? ", { size: 32, font: 'sinko' }),
@@ -49,7 +49,7 @@
 					origin('center'),
 				]);
 
-				charInput((ch) => {
+				onCharInput((ch) => {
 					nameField.text += ch;
 				});
 
