@@ -5,7 +5,10 @@ require('dotenv').config();
 const server = http.createServer();
 const io = sockets(server, {
 	cors: {
-		origin: 'http://127.0.0.1:5500',
+		origin: [
+			'http://127.0.0.1:5500',
+			'https://tic-tac-toe-rho-lilac.vercel.app/',
+		],
 		methods: ['GET', 'POST'],
 	},
 });
