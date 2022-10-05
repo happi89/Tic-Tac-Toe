@@ -4,9 +4,12 @@ const app = express();
 const sockets = require('socket.io');
 require('dotenv').config();
 
-app.use(express.static('./index.html'));
-
 const server = http.createServer(app);
+
+app.use(express.static(__dirname + '/')).get('*', (req, res) => {
+	res.sendFile(__dirname + '/index.html');
+});
+
 const io = sockets(server, {
 	cors: {
 		origin: [

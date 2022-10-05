@@ -1,6 +1,3 @@
-import kaboom from 'https://unpkg.com/kaboom/dist/kaboom.mjs';
-const socket = io();
-
 kaboom({
 	background: [0, 0, 0],
 	width: 2000,
@@ -82,6 +79,8 @@ const statusLabel = add([
 	pos(600, 200),
 	color(0, 255, 0),
 ]);
+
+const socket = io();
 
 socket.on('connect', function () {
 	socket.emit('addPlayer', {
