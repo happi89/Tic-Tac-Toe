@@ -3,12 +3,7 @@ const sockets = require('socket.io');
 require('dotenv').config();
 
 const server = http.createServer();
-const io = sockets(server, {
-	cors: {
-		origin: 'https://tic-tac-toe.<YOUR-USER-NAME>.repl.co',
-		methods: ['GET', 'POST'],
-	},
-});
+const io = sockets(server);
 
 const Statuses = {
 	WAITING: 'waiting',
