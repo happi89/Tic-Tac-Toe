@@ -4,9 +4,7 @@ const app = express();
 const sockets = require('socket.io');
 require('dotenv').config();
 
-app.get('/', (req, res) => {
-	return res.json('Hello');
-});
+app.use(express.static('./index.html'));
 
 const server = http.createServer(app);
 const io = sockets(server, {

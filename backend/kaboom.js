@@ -1,6 +1,5 @@
 import kaboom from 'https://unpkg.com/kaboom/dist/kaboom.mjs';
-const { io } = require('socket.io-client');
-const socket = io('https://http-nodejs-production-be3f.up.railway.app/');
+const socket = io();
 
 kaboom({
 	background: [0, 0, 0],
