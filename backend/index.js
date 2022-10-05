@@ -3,7 +3,12 @@ const sockets = require('socket.io');
 require('dotenv').config();
 
 const server = http.createServer();
-const io = sockets(server);
+const io = sockets(server, {
+	cors: {
+		origin: 'http://localhost:5500',
+		methods: ['GET', 'POST'],
+	},
+});
 
 const Statuses = {
 	WAITING: 'waiting',
