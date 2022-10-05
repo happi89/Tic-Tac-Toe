@@ -10,6 +10,13 @@ const io = sockets(server, {
 	},
 });
 
+io.on('connection', (connection) => {
+	connection.on('addPlayer', addPlayer(connection.id));
+	connection.on('action', action(connection.id));
+	connection.on('rematch', rematch(connection.id));
+	connection.on('disconnect', disconnect(connection.id));
+});
+
 const Statuses = {
 	WAITING: 'waiting',
 	PLAYING: 'playing',
@@ -120,7 +127,6 @@ const disconnect = (socketId) => {
 };
 
 const checkForEndOfGame = () => {
-	// Check for a win
 	gameState.players.forEach((player) => {
 		winPatterns.forEach((seq) => {
 			if (
@@ -134,7 +140,6 @@ const checkForEndOfGame = () => {
 		});
 	});
 
-	// Check for a draw
 	if (gameState.result.status != Statuses.WIN) {
 		const emptyBlock = gameState.board.indexOf(null);
 		if (emptyBlock == -1) {
@@ -142,13 +147,6 @@ const checkForEndOfGame = () => {
 		}
 	}
 };
-
-io.on('connection', (connection) => {
-	connection.on('addPlayer', addPlayer(connection.id));
-	connection.on('action', action(connection.id));
-	connection.on('rematch', rematch(connection.id));
-	connection.on('disconnect', disconnect(connection.id));
-});
 
 const PORT = process.env.PORT;
 

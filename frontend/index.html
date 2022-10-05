@@ -53,7 +53,7 @@
 					nameField.text += ch;
 				});
 
-				keyRelease('enter', () => {
+				onKeyRelease('enter', () => {
 					go('main', { playerName: nameField.text });
 				});
 			});
@@ -109,9 +109,7 @@
 				color(0, 255, 0),
 			]);
 
-			var socket = io('https://http-nodejs-production-be3f.up.railway.app/', {
-				reconnect: true,
-			});
+			const socket = io('https://http-nodejs-production-be3f.up.railway.app/');
 
 			socket.on('connect', function () {
 				socket.emit('addPlayer', {
@@ -186,7 +184,7 @@
 				}
 			});
 
-			charInput((ch) => {
+			onCharInput((ch) => {
 				if (ch.lowerCase() === 'r') {
 					socket.emit('rematch', null);
 				}
